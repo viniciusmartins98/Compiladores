@@ -49,6 +49,22 @@ dois_pontos		:
 
 {comentario}
 
+{tipo}			{printf("Ltipo: %s \n", yytext); return(TIPO);}
+
+{for}				{printf("Lfor: %s \n", yytext); return(FOR);}
+
+{if}				{printf("Lif: %s \n", yytext); return(IF);}
+
+{else}			{printf("Lelse: %s \n", yytext); return(ELSE);}
+
+{do}				{printf("Ldo: %s \n", yytext); return(DO);}
+
+{switch}			{printf("Lswitch: %s \n", yytext); return(SWITCH);}
+
+{while}			{printf("Lwhile: %s \n", yytext); return(WHILE);}
+
+{to}				{printf("Lto: %s \n", yytext); return(TO);}
+
 {virgula}			{printf("Virgula: %s \n", yytext); return(VIRGULA);}
 
 {abre_parenteses}		{printf("Abre parenteses: %s \n", yytext); return(ABRE_PAR);}
@@ -82,22 +98,6 @@ dois_pontos		:
 {numero}			{printf("Numero: %s \n", yytext); return(NUM);}
 
 {id}				{printf("Identificador: %s \n", yytext); return(ID);}	
-
-{tipo}			{printf("Ltipo: %s \n", yytext); return(TIPO);}
-
-{for}			{printf("Lfor: %s \n", yytext); return(FOR);}
-
-{if}			{printf("Lif: %s \n", yytext); return(IF);}
-
-{else}			{printf("Lelse: %s \n", yytext); return(ELSE);}
-
-{do}			{printf("Ldo: %s \n", yytext); return(DO);}
-
-{switch}			{printf("Lswitch: %s \n", yytext); return(SWITCH);}
-
-{while}			{printf("Lwhile: %s \n", yytext); return(WHILE);}
-
-{to}			{printf("Lto: %s \n", yytext); return(TO);}
 
 {erro_id_num}		{printf("\033[1;31mErro léxico na linha [%d], não é permitido identificadores com número: \"%s\" \033[0m\n",contLinha, yytext);}	
 .				{printf("\033[1;31mErro léxico na linha [%d], caractere \"%s\" não identificado. \033[0m\n", contLinha, yytext);}	
