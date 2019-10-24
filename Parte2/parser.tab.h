@@ -63,7 +63,15 @@ extern int yydebug;
     ASPAS = 273,
     APOST = 274,
     DOISP = 275,
-    OUTRO = 276
+    OUTRO = 276,
+    TIPO = 277,
+    FOR = 278,
+    IF = 279,
+    ELSE = 280,
+    DO = 281,
+    SWITCH = 282,
+    WHILE = 283,
+    TO = 284
   };
 #endif
 
@@ -72,12 +80,12 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 16 "parser.y" /* yacc.c:1909  */
+#line 42 "parser.y" /* yacc.c:1909  */
 
 	char nome[20];
 	int numero;
 
-#line 81 "parser.tab.h" /* yacc.c:1909  */
+#line 89 "parser.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

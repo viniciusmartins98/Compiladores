@@ -7,7 +7,33 @@ int yyerror(char *s);
 
 %}
 
-%token NUM STRING OP_ATRIB OP_ARIT OP_LOGIC OP_COMP ID VIRGULA ABRE_PAR FECHA_PAR PTVIRG ABRE_CHAVE FECHA_CHAVE ABRE_COL FECHA_COL ASPAS APOST DOISP OUTRO
+%token NUM
+%token STRING
+%token OP_ATRIB
+%token OP_ARIT
+%token OP_LOGIC
+%token OP_COMP
+%token ID
+%token VIRGULA
+%token ABRE_PAR
+%token FECHA_PAR
+%token PTVIRG
+%token ABRE_CHAVE
+%token FECHA_CHAVE
+%token ABRE_COL
+%token FECHA_COL
+%token ASPAS
+%token APOST
+%token DOISP
+%token OUTRO
+%token TIPO
+%token FOR
+%token IF
+%token ELSE
+%token DO
+%token SWITCH
+%token WHILE
+%token TO
 
 %type <nome> ID
 %type <numero> NUM
@@ -21,17 +47,55 @@ int yyerror(char *s);
 %%
 
 prog:
-	padrao;
+	S;
 
-padrao:
-	exemplo PTVIRG padrao | %empty
+S:
+	comandos
 ;
 
-exemplo:
-	ID {printf("Identificador: %s", $1);} |
-	NUM {printf("Num: %d", $1);}
+comandos:
+	comando comandos | %empty
 ;
-	
+
+comando:
+	declaracao PTVIRG | atribuicao PTVIRG
+	{printf("COMANDO!");}
+;
+
+operandos:
+	ID | NUM
+;
+
+atribuicao:
+	ID OP_ATRIB tram
+	{printf("ATRIBUICAO!");}
+;
+
+tram:
+	operacao_aritmetica | operandos
+;
+
+operacao_aritmetica:
+	v OP_ARIT v
+	{printf("OPERACAO!");}
+;
+
+v:
+	NUM | ID | ABRE_PAR v FECHA_PAR b
+;
+
+b:
+	OP_ARIT v | %empty
+;
+
+declaracao:
+	TIPO bique
+	{printf("DECLARACAO!");}
+;
+
+bique:
+	ID | atribuicao | ID VIRGULA bique | atribuicao VIRGULA bique
+;
 
 %%
 
