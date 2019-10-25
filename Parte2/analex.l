@@ -6,7 +6,7 @@
 int contLinha = 0;
 
 %}
-descarte 		    (" "|\t|\r)+
+descarte 		    	 (" "|\t|\r)+
 
 tipo			          ("num"|"char"|"bool")
 for			            ("for")
@@ -16,30 +16,31 @@ do				          ("do")
 switch		          ("switch")
 while			          ("while")
 to				          ("to")
+case 						 ("case")
 
 numero		          ([0-9]+(\.[0-9]+)?)
 letra			          ([A-Za-z])
-id			            ({letra}+)
+id			             ({letra}+)
 op_logico	          ("AND"|"OR")
 op_arit		          ("+"|"-"|"/"|"%"|"*")
-op_atrib	          ("=")
+op_atrib	         	 ("=")
 op_comp		          ("=="|"<"|">"|"<="|">="|"!=")
 
 cesp			          ([(|)|,|;|:|\{|\}|\[|\]|\"|\'])
-erro_id_num 	      (({id}|{numero})*({id}{numero}|{numero}{id})({id}|{numero})*)+
+erro_id_num 	       (({id}|{numero})*({id}{numero}|{numero}{id})({id}|{numero})*)+
 string		          (\".*\")
-comentario  	      ("#".*"#")
+comentario  	       ("#".*"#")
 virgula		          ,
 abre_parenteses	    \(
-fecha_parenteses	  \)
+fecha_parenteses	    \)
 fim_cmd		          ;
-abre_chave		      \{
-fecha_chave		      \}
-abre_colchete	      \[
-fecha_colchete	    \]
-apostofro		        \'
+abre_chave		       \{
+fecha_chave		       \}
+abre_colchete	       \[
+fecha_colchete	       \]
+apostofro		       \'
 aspas 		          \"
-dois_pontos	  	    :
+dois_pontos	  	       :
 
 
 %%
@@ -64,6 +65,8 @@ dois_pontos	  	    :
 {while}             {printf("Lwhile: %s \n", yytext); return(WHILE);}
 
 {to}	     			    {printf("Lto: %s \n", yytext); return(TO);}
+
+{case}	     			    {printf("Lcase: %s \n", yytext); return(CASE);}
 
 {virgula}	     			{printf("Virgula: %s \n", yytext); return(VIRGULA);}
 

@@ -35,6 +35,7 @@ int yyerror(char *s);
 %token WHILE
 %token TO
 %token DESCARTE
+%token CASE
 
 %type <nome> ID
 %type <numero> NUM
@@ -66,15 +67,17 @@ comandof:
 	{printf("COMANDOF!");}
 	| decFunc PTVIRG
 	{printf("COMANDOF!");}
+	| chamaFunc PTVIRG
+	{printf("COMANDOF!");}
 ;
 
 comandol:
-	if | while | for
+	if | while | for | switch
 	{printf("COMANDOL!");}
 ;
 
 operandos:
-	ID | NUM
+	ID | NUM | chamaFunc
 ;
 
 atribuicao:
@@ -171,6 +174,23 @@ listParametros1:
 ;
 
 
+chamaFunc:
+	ID ABRE_PAR listParametros2 FECHA_PAR
+	{printf("CHAMA FUNC JAO!!");}
+;
+
+listParametros2:
+	ID listParametros2 | VIRGULA ID listParametros2 | %empty 
+;
+
+switch:
+	SWITCH ID ABRE_CHAVE cases FECHA_CHAVE
+	{printf("SWITCH!");}
+;
+
+cases:
+	CASE OP_COMP operandos DO DOISP comandos | CASE OP_COMP operandos DO DOISP comandos cases
+;
 
 %%
 
