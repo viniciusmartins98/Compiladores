@@ -65,8 +65,6 @@ comandof:
 	{printf("\n\033[32mDECLARACAO -> SUCESSO!\033[0m\n");}
 	| atribuicao PTVIRG
 	{printf("\n\033[32mATRIBUICAO -> SUCESSO!\033[0m\n");}
-	| decFunc PTVIRG
-	{printf("\n\033[32mDECLARACAO DE FUNCAO -> SUCESSO!\033[0m\n");}
 	| chamaFunc PTVIRG
 	{printf("\n\033[32mCHAMADA DE FUNCAO -> SUCESSO!\033[0m\n");}
 	| BREAK PTVIRG
@@ -82,6 +80,8 @@ comandol:
 	{printf("\n\033[32mCOMANDO FOR -> SUCESSO!\033[0m\n");}
 	| switch
 	{printf("\n\033[32mCOMANDO SWITCH -> SUCESSO!\033[0m\n");}
+	| decFunc PTVIRG
+	{printf("\n\033[32mDECLARACAO DE FUNCAO -> SUCESSO!\033[0m\n");}
 ;
 
 // OPERADORES BASICOS (IDENTIFICADOR OU NUMERO OU FUNCAO)

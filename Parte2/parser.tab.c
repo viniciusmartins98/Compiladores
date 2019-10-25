@@ -467,7 +467,7 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    54,    54,    59,    59,    59,    64,    66,    68,    70,
-      72,    78,    79,    81,    83,    89,    89,    89,    94,    99,
+      76,    77,    79,    81,    83,    89,    89,    89,    94,    99,
       99,   105,   107,   112,   112,   117,   122,   122,   122,   122,
      127,   129,   135,   140,   146,   146,   152,   157,   157,   162,
      162,   168,   173,   173,   173,   178,   183,   183,   183,   188,
@@ -539,10 +539,10 @@ static const yytype_int8 yypact[] =
 static const yytype_uint8 yydefact[] =
 {
        5,     0,     0,     0,     0,     0,     0,     0,     0,     2,
-       5,     5,     0,     0,    11,    12,    13,     0,     0,    14,
+       5,     5,     0,     0,    10,    11,    12,     0,     0,    13,
        0,    48,    26,    27,    25,    38,    37,     0,    16,    15,
        0,    20,     0,    19,     0,    34,     0,    17,     0,     0,
-      10,     1,     3,     4,     7,     6,     8,     9,    18,    48,
+       9,     1,     3,     4,     7,     6,    14,     8,    18,    48,
        0,     0,     0,    44,     0,     0,    23,    24,     0,     0,
        0,     0,     0,     0,     0,    46,    48,    45,    26,    28,
        0,     0,     0,    29,    40,     0,    22,    33,    21,    35,
@@ -625,7 +625,7 @@ static const yytype_uint8 yystos[] =
 static const yytype_uint8 yyr1[] =
 {
        0,    33,    34,    35,    35,    35,    36,    36,    36,    36,
-      36,    37,    37,    37,    37,    38,    38,    38,    39,    40,
+      37,    37,    37,    37,    37,    38,    38,    38,    39,    40,
       40,    41,    41,    42,    42,    43,    44,    44,    44,    44,
       45,    45,    46,    47,    48,    48,    49,    50,    50,    51,
       51,    52,    53,    53,    53,    54,    55,    55,    55,    56,
@@ -636,7 +636,7 @@ static const yytype_uint8 yyr1[] =
 static const yytype_uint8 yyr2[] =
 {
        0,     2,     1,     2,     2,     0,     2,     2,     2,     2,
-       2,     1,     1,     1,     1,     1,     1,     1,     3,     1,
+       1,     1,     1,     1,     2,     1,     1,     1,     3,     1,
        1,     3,     3,     1,     1,     2,     1,     1,     3,     3,
       11,     6,     6,     3,     1,     3,     8,     1,     1,     3,
        1,     8,     3,     4,     0,     4,     2,     3,     0,     5,
@@ -1330,37 +1330,37 @@ yyreduce:
 
   case 8:
 #line 69 "parser.y" /* yacc.c:1646  */
-    {printf("\n\033[32mDECLARACAO DE FUNCAO -> SUCESSO!\033[0m\n");}
+    {printf("\n\033[32mCHAMADA DE FUNCAO -> SUCESSO!\033[0m\n");}
 #line 1335 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
 #line 71 "parser.y" /* yacc.c:1646  */
-    {printf("\n\033[32mCHAMADA DE FUNCAO -> SUCESSO!\033[0m\n");}
+    {printf("\n\033[32mBREAK -> SUCESSO!\033[0m\n");}
 #line 1341 "parser.tab.c" /* yacc.c:1646  */
     break;
 
-  case 10:
-#line 73 "parser.y" /* yacc.c:1646  */
-    {printf("\n\033[32mBREAK -> SUCESSO!\033[0m\n");}
+  case 11:
+#line 78 "parser.y" /* yacc.c:1646  */
+    {printf("\n\033[32mCOMANDO WHILE -> SUCESSO!\033[0m\n");}
 #line 1347 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
 #line 80 "parser.y" /* yacc.c:1646  */
-    {printf("\n\033[32mCOMANDO WHILE -> SUCESSO!\033[0m\n");}
+    {printf("\n\033[32mCOMANDO FOR -> SUCESSO!\033[0m\n");}
 #line 1353 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
 #line 82 "parser.y" /* yacc.c:1646  */
-    {printf("\n\033[32mCOMANDO FOR -> SUCESSO!\033[0m\n");}
+    {printf("\n\033[32mCOMANDO SWITCH -> SUCESSO!\033[0m\n");}
 #line 1359 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
 #line 84 "parser.y" /* yacc.c:1646  */
-    {printf("\n\033[32mCOMANDO SWITCH -> SUCESSO!\033[0m\n");}
+    {printf("\n\033[32mDECLARACAO DE FUNCAO -> SUCESSO!\033[0m\n");}
 #line 1365 "parser.tab.c" /* yacc.c:1646  */
     break;
 
