@@ -1,3 +1,6 @@
+num main();
+num teste(num x, num y, num k, bool flag, num count, char aux);
+
 num main() {
 	#Declaracao de variaveis#
 	num x = 0, y = 500, k = 5;
@@ -7,7 +10,7 @@ num main() {
 	teste (x, y, k, flag, count, aux);
 }
 
-teste(num x, num y, num k, bool flag, num count, char aux) {
+num teste(num x, num y, num k, bool flag, num count, char aux) {
 	#For default#
 	for i = x to y do {
 		count = count + (10 * x)/y;

@@ -67,6 +67,8 @@ comandof:
 	{printf("\n\033[32mATRIBUICAO -> SUCESSO!\033[0m\n");}
 	| chamaFunc PTVIRG
 	{printf("\n\033[32mCHAMADA DE FUNCAO -> SUCESSO!\033[0m\n");}
+	| decFunc PTVIRG
+	{printf("\n\033[32mDECLARACAO DE FUNCAO -> SUCESSO!\033[0m\n");}
 	| BREAK PTVIRG
 	{printf("\n\033[32mBREAK -> SUCESSO!\033[0m\n");}
 ;
@@ -80,8 +82,8 @@ comandol:
 	{printf("\n\033[32mCOMANDO FOR -> SUCESSO!\033[0m\n");}
 	| switch
 	{printf("\n\033[32mCOMANDO SWITCH -> SUCESSO!\033[0m\n");}
-	| decFunc
-	{printf("\n\033[32mDECLARACAO DE FUNCAO -> SUCESSO!\033[0m\n");}
+	| funcao
+	{printf("\n\033[32mFUNCAO -> SUCESSO!\033[0m\n");}
 ;
 
 // OPERADORES BASICOS (IDENTIFICADOR OU NUMERO OU FUNCAO)
@@ -162,8 +164,12 @@ parametrob:
 	operandos DOISP operandos | operandos
 ;
 
-// Declaracao de funcao
 decFunc:
+	TIPO ID ABRE_PAR listParametros1 FECHA_PAR
+;
+
+// Funcaouncao
+funcao:
 	TIPO ID ABRE_PAR listParametros1 FECHA_PAR ABRE_CHAVE comandos FECHA_CHAVE
 ;
 
