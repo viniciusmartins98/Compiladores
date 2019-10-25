@@ -4,7 +4,7 @@
 
 int contLinha = 1;
 int yylex();
-int yyerror(char *s);
+void yyerror(char *s);
 
 %}
 
@@ -37,6 +37,7 @@ int yyerror(char *s);
 %token TO
 %token DESCARTE
 %token CASE
+%token BREAK
 
 %type <nome> ID
 %type <numero> NUM
@@ -50,7 +51,8 @@ int yyerror(char *s);
 %%
 
 prog:
-	comandos;
+	comandos
+;
 
 // TODOS OS COMANDOS
 comandos:
@@ -67,6 +69,8 @@ comandof:
 	{printf("\n\033[32mDECLARACAO DE FUNCAO -> SUCESSO!\033[0m\n");}
 	| chamaFunc PTVIRG
 	{printf("\n\033[32mCHAMADA DE FUNCAO -> SUCESSO!\033[0m\n");}
+	| BREAK PTVIRG
+	{printf("\n\033[32mBREAK -> SUCESSO!\033[0m\n");}
 ;
 
 //COMANDOS QUE NAO PRECISAM DE ;
@@ -161,7 +165,7 @@ parametrob:
 
 // Declaracao de funcao
 decFunc:
-	TIPO ID ABRE_PAR listParametros1 FECHA_PAR
+	TIPO ID ABRE_PAR listParametros1 FECHA_PAR ABRE_CHAVE comandos FECHA_CHAVE
 ;
 
 // Parametros que serao utilizados para declaracao da funcao
@@ -191,9 +195,8 @@ cases:
 
 %%
 
-int yyerror(char *s) {
+void yyerror(char *s) {
 	printf("\033[1;31mErro sintatico na linha [%d]\033[0m\n",contLinha);
-	return 0;
 }
 int main() {
 	yyparse();

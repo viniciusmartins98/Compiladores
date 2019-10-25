@@ -1,0 +1,87 @@
+
+	#Declaracao de variaveis#
+	num x = 0, y = 500, k = 5;
+	num count = 0;
+	bool flag;
+	char aux;
+	teste (x, y, k, flag, count);
+
+
+
+
+
+	#For default#
+	for i = x to y do {
+		count = count + (10 * x)/y;
+	}
+
+	#For incrementando de 2 em 2 com esrutura condicional if interna#
+	count = 0;
+	for i = 0 to y:2 do {
+		count = count + 1;
+		if count == 100 do {
+			break;
+		}
+	}
+
+
+	#For iniciando em 100 e incrementando de k em k com esrutura condicional switch interna#
+	count = 0;
+	for i = 100 to y:k do {
+		switch count {
+			case <= 100 do:
+				count = count + 10;
+			break;
+			case >= 200 do:
+				count = 0;
+			break;
+			case == 50 do:
+				count = count * 10;
+			break;
+		}
+	}
+
+	#while e condicionais com operadores logicos#
+	while count <= 100 OR count == 80 do {
+		if count >= 50 AND count <= 90 do {
+			count = count + 1;
+		}
+		else do {
+			count = count - 1;
+		}
+
+	}
+
+	#ERROS#
+
+	#while e condicionais com operadores logicos#
+	while count_1 <= 100 OR count3 == 80 do {
+		if count >= 50 AND count <= 90 do {
+			count = count + 1;
+		}
+		else {
+			count = count - 1;
+		}
+		else { erro };
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

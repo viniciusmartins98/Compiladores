@@ -6,7 +6,7 @@
 extern int contLinha;
 
 %}
-descarte 		    	 (" "|\n|\t|\r)+
+descarte 		    	 (" "|\t|\r)+
 
 tipo			          ("num"|"char"|"bool")
 for			            ("for")
@@ -17,6 +17,7 @@ switch		          ("switch")
 while			          ("while")
 to				          ("to")
 case 						 ("case")
+break						 ("break")
 
 numero		          ([0-9]+(\.[0-9]+)?)
 letra			          ([A-Za-z])
@@ -45,11 +46,11 @@ dois_pontos	  	       :
 
 %%
 
-[\n]					{contLinha++;}	
+[\n]					 {contLinha++;}	
 
 {descarte}
 
-{comentario}
+{comentario}		 {printf("\n%s\n", yytext);}
 
 {tipo}			    {printf("%s ", yytext); return(TIPO);}
 
@@ -68,6 +69,8 @@ dois_pontos	  	       :
 {to}	     			 {printf("%s ", yytext); return(TO);}
 
 {case}	     		 {printf("%s ", yytext); return(CASE);}
+
+{break}				 {printf("%s ", yytext); return(BREAK);}
 
 {virgula}	       {printf("%s ", yytext); return(VIRGULA);}
 
