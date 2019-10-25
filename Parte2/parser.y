@@ -2,6 +2,7 @@
 %{
 #include <stdio.h>
 
+int contLinha = 1;
 int yylex();
 int yyerror(char *s);
 
@@ -49,145 +50,141 @@ int yyerror(char *s);
 %%
 
 prog:
-	S;
+	comandos;
 
-S:
-	comandos
-;
-
+// TODOS OS COMANDOS
 comandos:
 	comandof comandos| comandol comandos | %empty
-		{printf("COMANDOS!");}
 ;
 
+// COMANDOSQUE PRECISAM DE ;
 comandof:
 	declaracao PTVIRG 
-	{printf("COMANDOF!");}
+	{printf("\n\033[32mDECLARACAO -> SUCESSO!\033[0m\n");}
 	| atribuicao PTVIRG
-	{printf("COMANDOF!");}
+	{printf("\n\033[32mATRIBUICAO -> SUCESSO!\033[0m\n");}
 	| decFunc PTVIRG
-	{printf("COMANDOF!");}
+	{printf("\n\033[32mDECLARACAO DE FUNCAO -> SUCESSO!\033[0m\n");}
 	| chamaFunc PTVIRG
-	{printf("COMANDOF!");}
+	{printf("\n\033[32mCHAMADA DE FUNCAO -> SUCESSO!\033[0m\n");}
 ;
 
+//COMANDOS QUE NAO PRECISAM DE ;
 comandol:
-	if | while | for | switch
-	{printf("COMANDOL!");}
+	if 
+	| while 
+	{printf("\n\033[32mCOMANDO WHILE -> SUCESSO!\033[0m\n");}
+	| for 
+	{printf("\n\033[32mCOMANDO FOR -> SUCESSO!\033[0m\n");}
+	| switch
+	{printf("\n\033[32mCOMANDO SWITCH -> SUCESSO!\033[0m\n");}
 ;
 
+// OPERADORES BASICOS (IDENTIFICADOR OU NUMERO OU FUNCAO)
 operandos:
 	ID | NUM | chamaFunc
 ;
 
+// ATRIBUICAO, PODE SER UTILIZADO COM ; EM SEU TERMINO OU PODE SER UTILIZADA SEM A NECESSIDADE DO ; , POR EXEMPLO EM UM FOR (DEPENDE DO CAMINHO SEGIUDO)
 atribuicao:
-	ID OP_ATRIB valor
-	{printf("ATRIBUICAO!");}
+	ID OP_ATRIB expatribuicao
 ;
 
-valor:
+// EXPRESSAO QUE SERA ATRIBUIDA AO IDENTIFICADOR
+expatribuicao:
 	operacao_aritmetica | operandos
 ;
 
+// OPERACAO ARITMETICA, ACEITA PARENTESES
+
 operacao_aritmetica:
-	e OP_ARIT e
-	{printf("OPERACAO_ARITMETICA!");}
-	| ABRE_PAR e FECHA_PAR
-	{printf("OPERACAO_ARITMETICA!");}
+	expressao OP_ARIT expressao
+	{printf("\n\033[34mOPERACAO_ARITMETICA!\033[0m");}
+	| ABRE_PAR expressao FECHA_PAR
+	{printf("\n\033[34mOPERACAO_ARITMETICA!\033[0m");}
 ;
 
-e:
-	e OP_ARIT e | f
+expressao:
+	operandos | operacao_aritmetica 
 ;
 
-f:
-	ABRE_PAR e FECHA_PAR | operandos
-;
-
-
+// inicio declaracao de variaveis
 declaracao:
 	TIPO var
-	{printf("DECLARACAO!");}
 ;
 
+// VARIAVEL UTILIZADA NA DECLARACAO
 var:
 	ID | atribuicao | ID VIRGULA var | atribuicao VIRGULA var
 ;
 
+// COMANDO CONDICIONAL IF
 if:
 	IF condicao DO ABRE_CHAVE comandos FECHA_CHAVE ELSE DO ABRE_CHAVE comandos FECHA_CHAVE 
-	{printf("ifzera!");}	
+	{printf("\033[32mCOMANDO IF ELSE -> SUCESSO!\033[0m");}	
 	| IF condicao DO ABRE_CHAVE comandos FECHA_CHAVE
-	{printf("ifzera!");}
+	{printf("\033[32mCOMANDO IF -> SUCESSO!\033[0m");}
 ;
 
-condicao:
-	comparacao  {printf("condicao!");}
-	| comparacao OP_LOGIC comparacao bom
-	{printf("condicao!");}
-	 
-	//comparacao OP_LOGIC condicao
-	//{printf("condicao!");}
-	//| comparacao 
-	//{printf("condicao!");}
-;
-
-bom:
-	OP_LOGIC comparacao bom | %empty
-;
-
-comparacao:
-	ruim OP_COMP ruim
-	{printf("COMPARACAO!");}
-;
-
-ruim:
-	operandos | operacao_aritmetica
-;
-
+// COMANDO DE REPEICAO WHILE
 while:
 	WHILE condicao DO ABRE_CHAVE comandos FECHA_CHAVE
-	{printf("whilezera!");}
 ;
 
+// operacao de comparacao
+comparacao:
+	expatribuicao OP_COMP expatribuicao 
+	{printf("\n\033[34mOPERACAO COMPARATIVA\033[0m");}
+;
+
+// CONDICAO UTILIZADA NO IF E NO WHILE
+condicao:
+	comparacao | comparacao OP_LOGIC condicao
+	{printf("\n\033[34mOPERACAO COMPARATIVA E LOGICA\033[0m");}
+;
+
+// COMANDO DE REPETICAO FOR
 for:
-	FOR condicaoa TO condicaob DO ABRE_CHAVE comandos FECHA_CHAVE
-	{printf("forzera!");}	
+	FOR parametroa TO parametrob DO ABRE_CHAVE comandos FECHA_CHAVE
 ;
 
-condicaoa:
+// Valor utilizado para indicar o inicio do for
+parametroa:
 	atribuicao | ID
 ;
 
-condicaob:
+// Valor utilizado para indicar o fim do for e de quantos em quantos deve percorrer o for
+parametrob:
 	operandos DOISP operandos | operandos
 ;
 
 
+// Declaracao de funcao
 decFunc:
 	TIPO ID ABRE_PAR listParametros1 FECHA_PAR
-	{printf("DEC FUNC JAO!!");}
 ;
 
+// Parametros que serao utilizados para declaracao da funcao
 listParametros1:
 	TIPO ID listParametros1 | VIRGULA TIPO ID listParametros1 | %empty 
 ;
 
-
+// Chamada de funcao
 chamaFunc:
 	ID ABRE_PAR listParametros2 FECHA_PAR
-	{printf("CHAMA FUNC JAO!!");}
 ;
 
+// Parametros que serao utilizados para chamada da funcao
 listParametros2:
 	ID listParametros2 | VIRGULA ID listParametros2 | %empty 
 ;
 
+// Comando condicional switch
 switch:
 	SWITCH ID ABRE_CHAVE cases FECHA_CHAVE
-	{printf("SWITCH!");}
 ;
 
+// Cases tilizados no switch
 cases:
 	CASE OP_COMP operandos DO DOISP comandos | CASE OP_COMP operandos DO DOISP comandos cases
 ;
@@ -195,7 +192,7 @@ cases:
 %%
 
 int yyerror(char *s) {
-	printf("Syntax error: %s", s);
+	printf("\033[1;31mErro sintatico na linha [%d]\033[0m\n",contLinha);
 	return 0;
 }
 int main() {

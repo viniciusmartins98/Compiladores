@@ -82,7 +82,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 44 "parser.y" /* yacc.c:1909  */
+#line 45 "parser.y" /* yacc.c:1909  */
 
 	char nome[20];
 	int numero;	

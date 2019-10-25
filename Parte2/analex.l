@@ -3,10 +3,10 @@
 #include <stdio.h>
 #include "parser.tab.h"
 
-int contLinha = 0;
+extern int contLinha;
 
 %}
-descarte 		    	 (" "|\t|\r)+
+descarte 		    	 (" "|\n|\t|\r)+
 
 tipo			          ("num"|"char"|"bool")
 for			            ("for")
@@ -44,66 +44,67 @@ dois_pontos	  	       :
 
 
 %%
-{descarte}
 
-[\n]				{contLinha++;}	
+[\n]					{contLinha++;}	
+
+{descarte}
 
 {comentario}
 
-{tipo}			        {printf("Ltipo: %s \n", yytext); return(TIPO);}
+{tipo}			    {printf("%s ", yytext); return(TIPO);}
 
-{for}               {printf("Lfor: %s \n", yytext); return(FOR);}
+{for}              {printf("%s ", yytext); return(FOR);}
 
-{if}				        {printf("Lif: %s \n", yytext); return(IF);}
+{if}				    {printf("%s ", yytext); return(IF);}
 
-{else}			        {printf("Lelse: %s \n", yytext); return(ELSE);}
+{else}			    {printf("%s ", yytext); return(ELSE);}
 
-{do}				        {printf("Ldo: %s \n", yytext); return(DO);}
+{do}				    {printf("%s ", yytext); return(DO);}
 
-{switch}		        {printf("Lswitch: %s \n", yytext); return(SWITCH);}
+{switch}		       {printf("%s ", yytext); return(SWITCH);}
 
-{while}             {printf("Lwhile: %s \n", yytext); return(WHILE);}
+{while}            {printf("%s ", yytext); return(WHILE);}
 
-{to}	     			    {printf("Lto: %s \n", yytext); return(TO);}
+{to}	     			 {printf("%s ", yytext); return(TO);}
 
-{case}	     			    {printf("Lcase: %s \n", yytext); return(CASE);}
+{case}	     		 {printf("%s ", yytext); return(CASE);}
 
-{virgula}	     			{printf("Virgula: %s \n", yytext); return(VIRGULA);}
+{virgula}	       {printf("%s ", yytext); return(VIRGULA);}
 
-{abre_parenteses}   {printf("Abre parenteses: %s \n", yytext); return(ABRE_PAR);}
+{abre_parenteses}  {printf("%s ", yytext); return(ABRE_PAR);}
 
-{fecha_parenteses}  {printf("Fecha parenteses: %s \n", yytext); return(FECHA_PAR);}
+{fecha_parenteses} {printf("%s ", yytext); return(FECHA_PAR);}
 
-{fim_cmd}		      	{printf("Fim cmd: %s \n", yytext); return(PTVIRG);}
+{fim_cmd}		    {printf("%s ", yytext); return(PTVIRG);}
 
-{abre_chave}		    {printf("Abre chave: %s \n", yytext); return(ABRE_CHAVE);}
+{abre_chave}		 {printf("%s ", yytext); return(ABRE_CHAVE);}
 
-{fecha_chave}	    	{printf("Fecha chave: %s \n", yytext); return(FECHA_CHAVE);}
+{fecha_chave}	    {printf("%s ", yytext); return(FECHA_CHAVE);}
 
-{abre_colchete}	  	{printf("Abre colchete: %s \n", yytext); return(ABRE_COL);}
+{abre_colchete}	 {printf("%s ", yytext); return(ABRE_COL);}
 
-{fecha_colchete}		{printf("Fecha colchete: %s \n", yytext); return(FECHA_COL);}
+{fecha_colchete}   {printf("%s ", yytext); return(FECHA_COL);}
 
-{apostofro}			    {printf("Apostofro: %s \n", yytext); return(APOST);}
+{apostofro}			 {printf("%s ", yytext); return(APOST);}
 
-{aspas}			        {printf("Aspas: %s \n", yytext); return(ASPAS);}
+{aspas}			    {printf("%s ", yytext); return(ASPAS);}
 
-{dois_pontos}		    {printf("Dois pontos: %s \n", yytext); return(DOISP);}
+{dois_pontos}		 {printf("%s ", yytext); return(DOISP);}
 
-{op_logico}			    {printf("Operador logico: %s \n", yytext); return(OP_LOGIC);}
+{op_logico}			 {printf("%s ", yytext); return(OP_LOGIC);}
 
-{op_arit}			      {printf("Operador aritmético: %s \n", yytext); return(OP_ARIT);}
+{op_arit}			 {printf("%s ", yytext); return(OP_ARIT);}
 
-{op_atrib}			    {printf("Operador atribuição: %s \n", yytext); return(OP_ATRIB);}
+{op_atrib}			 {printf("%s ", yytext); return(OP_ATRIB);}
 
-{op_comp}			      {printf("Operador comparação: %s \n", yytext); return(OP_COMP);}
+{op_comp}			 {printf("%s ", yytext); return(OP_COMP);}
 
-{numero}			      {printf("Numero: %s \n", yytext); return(NUM);}
+{numero}			    {printf("%s ", yytext); return(NUM);}
 
-{id}				        {printf("Identificador: %s \n", yytext); return(ID);}	
+{id}				    {printf("%s ", yytext); return(ID);}	
 
-{erro_id_num}		    {printf("\033[1;31mErro léxico na linha [%d], não é permitido identificadores com número: \"%s\" \033[0m\n",contLinha, yytext);}	
-.				            {printf("\033[1;31mErro léxico na linha [%d], caractere \"%s\" não identificado. \033[0m\n", contLinha, yytext);}	
+{erro_id_num}		 {printf("\033[1;31mErro léxico na linha [%d], não é permitido identificadores com número: \"%s\" \033[0m\n",contLinha, yytext);}	
+.				       {printf("\033[1;31mErro léxico na linha [%d], caractere \"%s\" não identificado. \033[0m\n", contLinha, yytext);}	
 
 
 %%
