@@ -1,0 +1,26 @@
+num y = 100;
+num valueA = 12, valueB = 4.5;
+num status, val;
+num x;
+
+for x = 0 to y:3 do {
+	num i = 0;
+	status = 256/(valueA + valueB);
+	for i to val do {
+		if i <= status do {
+			val = 10;
+		}
+		else do {
+			val = 0;
+		}
+	}
+}
+
+char projeto, trabalho;
+
+while projeto != bom do {
+	trabalho = refazer;
+}
+
+
+
