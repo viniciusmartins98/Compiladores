@@ -1,16 +1,13 @@
-
+num main() {
 	#Declaracao de variaveis#
 	num x = 0, y = 500, k = 5;
 	num count = 0;
 	bool flag;
 	char aux;
-	teste (x, y, k, flag, count);
+	teste (x, y, k, flag, count, aux);
+}
 
-
-
-
-
-
+teste(num x, num y, num k, bool flag, num count, char aux) {
 	#For default#
 	for i = x to y do {
 		count = count + (10 * x)/y;
@@ -56,16 +53,17 @@
 	#ERROS#
 
 	#while e condicionais com operadores logicos#
-	while count_1 <= 100 OR count3 == 80 do {
-		if count >= 50 AND count <= 90 do {
+	count_1
+	while count <= 100 OR count == 80 do {
+		if count >= 50 AND count <= 90 {
 			count = count + 1;
 		}
 		else {
-			count = count - 1;
+			count2 = count - 1;
 		}
 		else { erro };
 	}
-
+}
 
 
 

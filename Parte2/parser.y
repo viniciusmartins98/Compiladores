@@ -8,36 +8,36 @@ void yyerror(char *s);
 
 %}
 
-%token NUM
-%token STRING
-%token OP_ATRIB
-%token OP_ARIT
-%token OP_LOGIC
-%token OP_COMP
-%token ID
-%token VIRGULA
-%token ABRE_PAR
-%token FECHA_PAR
-%token PTVIRG
-%token ABRE_CHAVE
-%token FECHA_CHAVE
-%token ABRE_COL
-%token FECHA_COL
-%token ASPAS
-%token APOST
-%token DOISP
-%token OUTRO
-%token TIPO
-%token FOR
-%token IF
-%token ELSE
-%token DO
-%token SWITCH
-%token WHILE
-%token TO
-%token DESCARTE
-%token CASE
-%token BREAK
+%token NUM			// Numeros
+%token STRING		// String
+%token OP_ATRIB	// Operadores de atribuicao
+%token OP_ARIT		// Operadores aritmeticos
+%token OP_LOGIC	// Operadores logicos
+%token OP_COMP		// Operadores de comparacao
+%token ID			// Identificador
+%token VIRGULA		// Virgula
+%token ABRE_PAR	// Abre parenteses
+%token FECHA_PAR	// Fecha parenteses
+%token PTVIRG		// Ponto e virgula
+%token ABRE_CHAVE	// Abre chave
+%token FECHA_CHAVE//	Fecha chave
+%token ABRE_COL	// Abre colchetes
+%token FECHA_COL	// Fecha colchetes
+%token ASPAS		// Aspas
+%token APOST		// Apostrofo
+%token DOISP		// Dois pontos
+%token OUTRO		// Outro
+%token TIPO			// Tipo
+%token FOR			// For
+%token IF			// If
+%token ELSE			// Else
+%token DO			// Do
+%token SWITCH		// Switch
+%token WHILE		// While
+%token TO			// To
+%token DESCARTE	// caracateres que serao ignorados
+%token CASE			// Case
+%token BREAK		// Break
 
 %type <nome> ID
 %type <numero> NUM
@@ -80,7 +80,7 @@ comandol:
 	{printf("\n\033[32mCOMANDO FOR -> SUCESSO!\033[0m\n");}
 	| switch
 	{printf("\n\033[32mCOMANDO SWITCH -> SUCESSO!\033[0m\n");}
-	| decFunc PTVIRG
+	| decFunc
 	{printf("\n\033[32mDECLARACAO DE FUNCAO -> SUCESSO!\033[0m\n");}
 ;
 
@@ -162,7 +162,6 @@ parametrob:
 	operandos DOISP operandos | operandos
 ;
 
-
 // Declaracao de funcao
 decFunc:
 	TIPO ID ABRE_PAR listParametros1 FECHA_PAR ABRE_CHAVE comandos FECHA_CHAVE
@@ -170,7 +169,7 @@ decFunc:
 
 // Parametros que serao utilizados para declaracao da funcao
 listParametros1:
-	TIPO ID listParametros1 | VIRGULA TIPO ID listParametros1 | %empty 
+	TIPO ID VIRGULA listParametros1 | TIPO ID | %empty
 ;
 
 // Chamada de funcao
@@ -180,7 +179,7 @@ chamaFunc:
 
 // Parametros que serao utilizados para chamada da funcao
 listParametros2:
-	ID listParametros2 | VIRGULA ID listParametros2 | %empty 
+	ID | ID VIRGULA listParametros2 | %empty
 ;
 
 // Comando condicional switch
