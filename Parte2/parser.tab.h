@@ -83,7 +83,7 @@ union YYSTYPE
 #line 42 "parser.y" /* yacc.c:1909  */
 
 	char nome[20];
-	int numero;
+	int numero;	
 
 #line 89 "parser.tab.h" /* yacc.c:1909  */
 };

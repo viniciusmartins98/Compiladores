@@ -41,7 +41,7 @@ int yyerror(char *s);
 
 %union{
 	char nome[20];
-	int numero;
+	int numero;	
 }
 
 %%
@@ -54,12 +54,20 @@ S:
 ;
 
 comandos:
-	comando comandos | %empty
+	comandof comandos| comandol comandos | %empty
+		{printf("COMANDOS!");}
 ;
 
-comando:
-	declaracao PTVIRG | atribuicao PTVIRG
-	{printf("COMANDO!");}
+comandof:
+	declaracao PTVIRG 
+	{printf("COMANDOF!");}
+	| atribuicao PTVIRG
+	{printf("COMANDOF!");}
+;
+
+comandol:
+	if | while | for
+	{printf("COMANDOL!");}
 ;
 
 operandos:
@@ -77,7 +85,7 @@ tram:
 
 operacao_aritmetica:
 	v OP_ARIT v
-	{printf("OPERACAO!");}
+	{printf("OPERACAO_ARITMETICA!");}
 ;
 
 v:
@@ -96,6 +104,52 @@ declaracao:
 bique:
 	ID | atribuicao | ID VIRGULA bique | atribuicao VIRGULA bique
 ;
+
+if:
+	IF condicao DO ABRE_CHAVE comandos FECHA_CHAVE ELSE DO ABRE_CHAVE comandos FECHA_CHAVE 
+	{printf("ifzera!");}	
+	| IF condicao DO ABRE_CHAVE comandos FECHA_CHAVE
+	{printf("ifzera!");}
+;
+
+condicao:
+	comparacao OP_LOGIC condicao
+	{printf("condicao!");}
+	| comparacao 
+	{printf("condicao!");}
+;
+
+comparacao:
+	bom OP_COMP bom
+	{printf("COMPARACAO!");}
+;
+
+bom:
+	operandos | operacao_aritmetica
+;
+
+while:
+	WHILE condicao DO ABRE_CHAVE comandos FECHA_CHAVE
+	{printf("whilezera!");}
+;
+
+for:
+	FOR condicaoa TO condicaob DO ABRE_CHAVE comandos FECHA_CHAVE
+	{printf("forzera!");}	
+;
+
+condicaoa:
+	atribuicao | ID
+;
+
+condicaob:
+	operandos DOISP operandos | operandos
+;
+
+
+
+
+
 
 %%
 

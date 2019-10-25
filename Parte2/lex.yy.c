@@ -371,18 +371,18 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[120] =
     {   0,
-        0,    0,   35,   30,    1,    2,   30,   13,   30,   16,
-       12,    5,    6,    4,   19,   14,    7,   18,   17,   18,
-       20,   20,   20,   10,   11,   20,   20,   20,   20,   20,
-       20,   20,   20,   20,   20,   20,    8,    9,    1,   18,
-        0,    3,    0,   19,   29,   29,   20,   20,   15,   20,
-       20,   20,   20,   20,   20,   20,   20,   20,   20,   20,
-       19,   29,   29,    0,   20,   20,   20,   20,   20,   20,
-       20,   20,   19,    0,   29,   20,   20,   20,   20,    0,
-       29,   29,   20,   20,   20,    0,   29,    0,   20,   20,
-        0,   29,    0,   20,   29,    0,   20,    0,    0,   20,
+        0,    0,   35,   30,    1,    2,   30,   21,   30,   24,
+       20,   13,   14,   12,   27,   22,   15,   26,   25,   26,
+       28,   28,   28,   18,   19,   28,   28,   28,   28,   28,
+       28,   28,   28,   28,   28,   28,   16,   17,    1,   26,
+        0,    3,    0,   27,   29,   29,   28,   28,   23,   28,
+       28,    8,   28,   28,    6,   28,   28,   28,   11,   28,
+       27,   29,   29,    0,   28,   28,   28,    5,    4,   28,
+       28,   28,   27,    0,   29,    7,   28,   28,   28,    0,
+       29,   29,   28,   28,   10,    0,   29,    0,   28,    9,
+        0,   29,    0,   28,   29,    0,   28,    0,    0,   28,
 
-        0,    0,   20,    0,    0,   20,   33,    0,    0,    0,
+        0,    0,   28,    0,    0,   28,   33,    0,    0,    0,
         0,   31,    0,    0,    0,    0,    0,   32,    0
     } ;
 
@@ -904,127 +904,127 @@ YY_RULE_SETUP
 case 4:
 YY_RULE_SETUP
 #line 52 "analex.l"
-{printf("Virgula: %s \n", yytext); return(VIRGULA);}
+{printf("Ltipo: %s \n", yytext); return(TIPO);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 54 "analex.l"
-{printf("Abre parenteses: %s \n", yytext); return(ABRE_PAR);}
+{printf("Lfor: %s \n", yytext); return(FOR);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 56 "analex.l"
-{printf("Fecha parenteses: %s \n", yytext); return(FECHA_PAR);}
+{printf("Lif: %s \n", yytext); return(IF);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 58 "analex.l"
-{printf("Fim cmd: %s \n", yytext); return(PTVIRG);}
+{printf("Lelse: %s \n", yytext); return(ELSE);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 60 "analex.l"
-{printf("Abre chave: %s \n", yytext); return(ABRE_CHAVE);}
+{printf("Ldo: %s \n", yytext); return(DO);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 62 "analex.l"
-{printf("Fecha chave: %s \n", yytext); return(FECHA_CHAVE);}
+{printf("Lswitch: %s \n", yytext); return(SWITCH);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 64 "analex.l"
-{printf("Abre colchete: %s \n", yytext); return(ABRE_COL);}
+{printf("Lwhile: %s \n", yytext); return(WHILE);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 66 "analex.l"
-{printf("Fecha colchete: %s \n", yytext); return(FECHA_COL);}
+{printf("Lto: %s \n", yytext); return(TO);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 68 "analex.l"
-{printf("Apostofro: %s \n", yytext); return(APOST);}
+{printf("Virgula: %s \n", yytext); return(VIRGULA);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 70 "analex.l"
-{printf("Aspas: %s \n", yytext); return(ASPAS);}
+{printf("Abre parenteses: %s \n", yytext); return(ABRE_PAR);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 72 "analex.l"
-{printf("Dois pontos: %s \n", yytext); return(DOISP);}
+{printf("Fecha parenteses: %s \n", yytext); return(FECHA_PAR);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 74 "analex.l"
-{printf("Operador logico: %s \n", yytext); return(OP_LOGIC);}
+{printf("Fim cmd: %s \n", yytext); return(PTVIRG);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 76 "analex.l"
-{printf("Operador aritmético: %s \n", yytext); return(OP_ARIT);}
+{printf("Abre chave: %s \n", yytext); return(ABRE_CHAVE);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 78 "analex.l"
-{printf("Operador atribuição: %s \n", yytext); return(OP_ATRIB);}
+{printf("Fecha chave: %s \n", yytext); return(FECHA_CHAVE);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 80 "analex.l"
-{printf("Operador comparação: %s \n", yytext); return(OP_COMP);}
+{printf("Abre colchete: %s \n", yytext); return(ABRE_COL);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 82 "analex.l"
-{printf("Numero: %s \n", yytext); return(NUM);}
+{printf("Fecha colchete: %s \n", yytext); return(FECHA_COL);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 84 "analex.l"
-{printf("Identificador: %s \n", yytext); return(ID);}	
+{printf("Apostofro: %s \n", yytext); return(APOST);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 86 "analex.l"
-{printf("Ltipo: %s \n", yytext); return(TIPO);}
+{printf("Aspas: %s \n", yytext); return(ASPAS);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 88 "analex.l"
-{printf("Lfor: %s \n", yytext); return(FOR);}
+{printf("Dois pontos: %s \n", yytext); return(DOISP);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 90 "analex.l"
-{printf("Lif: %s \n", yytext); return(IF);}
+{printf("Operador logico: %s \n", yytext); return(OP_LOGIC);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 92 "analex.l"
-{printf("Lelse: %s \n", yytext); return(ELSE);}
+{printf("Operador aritmético: %s \n", yytext); return(OP_ARIT);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 94 "analex.l"
-{printf("Ldo: %s \n", yytext); return(DO);}
+{printf("Operador atribuição: %s \n", yytext); return(OP_ATRIB);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 96 "analex.l"
-{printf("Lswitch: %s \n", yytext); return(SWITCH);}
+{printf("Operador comparação: %s \n", yytext); return(OP_COMP);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 98 "analex.l"
-{printf("Lwhile: %s \n", yytext); return(WHILE);}
+{printf("Numero: %s \n", yytext); return(NUM);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 100 "analex.l"
-{printf("Lto: %s \n", yytext); return(TO);}
+{printf("Identificador: %s \n", yytext); return(ID);}	
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
