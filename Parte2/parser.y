@@ -34,6 +34,7 @@ int yyerror(char *s);
 %token SWITCH
 %token WHILE
 %token TO
+%token DESCARTE
 
 %type <nome> ID
 %type <numero> NUM
@@ -63,6 +64,8 @@ comandof:
 	{printf("COMANDOF!");}
 	| atribuicao PTVIRG
 	{printf("COMANDOF!");}
+	| decFunc PTVIRG
+	{printf("COMANDOF!");}
 ;
 
 comandol:
@@ -75,34 +78,37 @@ operandos:
 ;
 
 atribuicao:
-	ID OP_ATRIB tram
+	ID OP_ATRIB valor
 	{printf("ATRIBUICAO!");}
 ;
 
-tram:
+valor:
 	operacao_aritmetica | operandos
 ;
 
 operacao_aritmetica:
-	v OP_ARIT v
+	e OP_ARIT e
+	{printf("OPERACAO_ARITMETICA!");}
+	| ABRE_PAR e FECHA_PAR
 	{printf("OPERACAO_ARITMETICA!");}
 ;
 
-v:
-	NUM | ID | ABRE_PAR v FECHA_PAR b
+e:
+	e OP_ARIT e | f
 ;
 
-b:
-	OP_ARIT v | %empty
+f:
+	ABRE_PAR e FECHA_PAR | operandos
 ;
+
 
 declaracao:
-	TIPO bique
+	TIPO var
 	{printf("DECLARACAO!");}
 ;
 
-bique:
-	ID | atribuicao | ID VIRGULA bique | atribuicao VIRGULA bique
+var:
+	ID | atribuicao | ID VIRGULA var | atribuicao VIRGULA var
 ;
 
 if:
@@ -113,18 +119,26 @@ if:
 ;
 
 condicao:
-	comparacao OP_LOGIC condicao
+	comparacao  {printf("condicao!");}
+	| comparacao OP_LOGIC comparacao bom
 	{printf("condicao!");}
-	| comparacao 
-	{printf("condicao!");}
-;
-
-comparacao:
-	bom OP_COMP bom
-	{printf("COMPARACAO!");}
+	 
+	//comparacao OP_LOGIC condicao
+	//{printf("condicao!");}
+	//| comparacao 
+	//{printf("condicao!");}
 ;
 
 bom:
+	OP_LOGIC comparacao bom | %empty
+;
+
+comparacao:
+	ruim OP_COMP ruim
+	{printf("COMPARACAO!");}
+;
+
+ruim:
 	operandos | operacao_aritmetica
 ;
 
@@ -147,7 +161,14 @@ condicaob:
 ;
 
 
+decFunc:
+	TIPO ID ABRE_PAR listParametros1 FECHA_PAR
+	{printf("DEC FUNC JAO!!");}
+;
 
+listParametros1:
+	TIPO ID listParametros1 | VIRGULA TIPO ID listParametros1 | %empty 
+;
 
 
 

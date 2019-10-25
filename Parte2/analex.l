@@ -6,7 +6,7 @@
 int contLinha = 0;
 
 %}
-descarte 		([ \t])+
+descarte 		(" "|\t|\n|\r)+
 
 tipo			("num"|"char"|"bool")
 for			("for")

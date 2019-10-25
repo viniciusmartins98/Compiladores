@@ -71,7 +71,8 @@ extern int yydebug;
     DO = 281,
     SWITCH = 282,
     WHILE = 283,
-    TO = 284
+    TO = 284,
+    DESCARTE = 285
   };
 #endif
 
@@ -80,12 +81,12 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 42 "parser.y" /* yacc.c:1909  */
+#line 43 "parser.y" /* yacc.c:1909  */
 
 	char nome[20];
 	int numero;	
 
-#line 89 "parser.tab.h" /* yacc.c:1909  */
+#line 90 "parser.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
